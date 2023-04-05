@@ -1,0 +1,55 @@
+--// VARIABLES
+local DR = DeathRun
+local CA = DR.MainAbility
+local CA2 = DR.SideAbility
+local SA = DR.SuperAbility
+
+--// ABILITIES
+// Main
+
+// Side
+function CA2.DOWNWARDSTHOK(mo) --Hey all, unoriginal thok here //This one lets you keep spinning after the fact though, so maybe it's a bit original?
+	local player = mo.player
+	
+	if player.thokcooldown == nil then player.thokcooldown = 0 end
+	if player.downwardsthokked == nil then player.downwardsthokked = false end
+	if player.downwardsthokspinning == nil then player.downwardsthokspinning = false end
+
+	if mo and mo.valid then --Is our Speed valid?
+		--we run these first just to be fair to those spinning
+		if (player.downwardsthokspinning) then
+			if (P_IsObjectOnGround(mo) or mo.eflags & MFE_JUSTHITFLOOR) then
+				if (player.charability2 != CA2_SPINDASH) then player.charability2 = CA2_SPINDASH end
+				player.downwardsthokked = false
+				player.pflags = $1 & ~PF_THOKKED|PF_STARTDASH & PF_SPINNING
+			else
+				if (player.pflags & (PF_JUMPED &~ PF_SPINNING) or mo.state != S_PLAY_ROLL) then
+					player.pflags = $1 & ~PF_SPINNING
+					player.downwardsthokspinning = false
+				end
+			end
+		end
+		--Did we Hold SPIN in Deathrun?
+		if (player.drspinholding) then
+			if not (player.pflags & PF_SPINNING and (P_IsObjectOnGround(mo) and mo.eflags & MFE_JUSTHITFLOOR)) then
+				player.downwardsthokspinning = (player.downwardsthokked and true or false)
+			end
+		end
+		--Did we Press SPIN in Deathrun?
+		if (player.drspintapping) then
+			if (player.pflags & (PF_JUMPED &~ PF_THOKKED)) and not (player.thokcooldown) then
+				player.downwardsthokked = true
+				P_SpawnThokMobj(player)
+				S_StartSound(mo, sfx_thok)
+				P_InstaThrust(mo, mo.angle, player.actionspd)
+				P_SetObjectMomZ(mo, -10*FRACUNIT, false)
+				player.pflags = $1|PF_THOKKED
+				player.thokcooldown = 3*TICRATE
+			end
+		end
+		--Final Checks
+		if (player.thokcooldown) then player.thokcooldown = $ - 1 end
+	end
+end
+
+// Super

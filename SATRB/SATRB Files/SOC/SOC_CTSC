@@ -1,0 +1,156 @@
+CutScene 1
+NumScenes 3
+Scene 1
+NumberOfPics = 1
+Pic1Name = ENDBOOM
+Pic1Hires = true
+Pic1Duration = 520
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+Music = _SUPER
+MusicLoop = true
+SceneText = When we last left our heroes,
+Sonic, Tails, Knuckles, Amy, Fang, and
+a Metal Sonic fixed by Tails were blazing
+down to the ground in Eggman's Escape Pod.
+	#
+Scene 2
+NumberOfPics = 1
+Pic1Name = GFSM5
+Pic1Hires = true
+Pic1Duration = 275
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+SceneText =
+At Greenflower Mountain,
+Eggman's horrific face was removed,
+and everything started to return
+back to normal there, or so it
+seemed.
+	#
+Scene 3
+NumberOfPics = 1
+Pic1Name = MAP01P
+Pic1Hires = true
+Pic1Duration = 1320
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+MusicLoop = true
+SceneText =
+When the team realized that the
+pod is nearing the ground,
+they asked Tails where they were
+landing. Tails says that, "We're
+dropping down in a place named
+Metallic City Zone, commonly known for
+its majestic and metallic structures!
+Hey wait, my lab is nearby! It's built
+around some sunken ruins. We can go there!"
+So, as the pod crashes down to the Metallic City,
+Sonic and Co. begin their adventure to get back home...
+	#
+
+Cutscene 2
+NumScenes 3
+Scene 1
+NumberOfPics = 1
+Pic1Name = REVENGE
+Pic1Hires = true
+Pic1Duration = 415
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+Music = OINTRO
+MusicLoop = true
+SceneText =
+Tails Exclaims, "We've found my lab! Now, let me lay you
+in on some important information: You can use the
+teleporters in my lab to teleport to the next levels.
+However, ironically, you need to unlock them.
+And as you've probably already suspected, you need to
+unlock them by completing levels and such."
+	#
+Scene 2
+NumberOfPics = 1
+Pic1Hires = true
+Pic1Name = SSNTAILS
+Pic1Duration = 465
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+SceneText = "However, before you can lounge around, you'll
+need to visit the first teleporter. I've noticed some suspicious
+activites going on there. The teleporter will take you to a
+place I've set up for you to start, and from there, you'll need
+to find out what's going on at the peak. Good luck!"
+   #
+Scene 3
+NumberOfPics = 1
+Pic1Hires = true
+Pic1Name = TAILSSAD
+Pic1Duration = 85
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+SceneText = "Alright, let's get started!", Sonic says.
+	#
+
+Cutscene 3
+NumScenes 4
+Scene 1
+Pic1Hires = true
+Pic1Duration = 245
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+Music = _CREDS
+SceneText = "Phew! I'm glad we're outta that
+Volcano!", Knux said. "Same", Tails exclaimed.
+Suddenly, people started screaming and running
+away. Sonic and Co. went to investigate.
+	#
+Scene 2
+Pic1Hires = true
+Pic1Duration = 274
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+Music = OINTRO
+SceneText = Sonic and the gang arrived
+in the main corider of the train. A
+mysterious figure began walking towards them.
+As the figure got closer and closer, this
+figure was revealed to be...
+	#
+Scene 3
+Pic1Hires = true
+Pic1Name = FANGLOOK
+Pic1Duration = 47
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+Music = VSALT
+SceneText = "FANG!?!", They said altogether.
+	#
+Scene 4
+Pic1Hires = true
+Pic1Name = TAILTALK
+Pic1Duration = 145
+Pic1XCoord = 0
+Pic1YCoord = 0
+TextXPos = 0
+TextYPos = 0
+SceneText = "Ayo the Pizza Here", Fang says, nonchalantly.
+	#

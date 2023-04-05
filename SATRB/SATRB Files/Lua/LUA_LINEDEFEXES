@@ -1,0 +1,60 @@
+--// CUSTOM LINEDEF EXECUTORS (By StarManiaKG) //--
+--// VARIABLES //--
+--// Links (to the past)
+local S = satrb
+
+local SZ = S.Zones
+
+local SL = S.Linedefs
+local SLE = SL.elevator
+
+--// HOOKS //--
+addHook("MapLoad", function()
+	-- Elevators --
+	SLE.position = "up"
+end)
+
+--// LINEDEF EXECTUORS //--
+for _, linedef in ipairs({"LEVATR", "TLFBPZ"})
+	addHook("LinedefExecute", function(line, mobj)
+		if ((line and line.valid) and (mobj and mobj.valid)) then
+			local player = (mobj.player or consoleplayer)
+			
+			--// ELEVATORS
+			if (linedef == "LEVATR") then
+				-- While Moving --
+				P_LinedefExecute((SLE.position == "up" and line.tag or line.frontsector.tag))
+				
+				-- After Moving --
+				SLE.position = ($ == "up" and "down" or "up")
+			end
+			
+			--// DIALOG TEXT
+			if (linedef == ("LEVATR" or "TLFBPZ")) then
+				local warpdialog1 = {
+					textcontinues = true,
+					canquit = true,
+					
+					box = {
+						background = "DIALOGUE",
+						flags = V_SNAPTOBOTTOM|V_PERPLAYER
+					},
+					pictures = {
+						face = "TAILTALK", //TAILSHAPPY
+						flags = V_SNAPTOBOTTOM|V_PERPLAYER
+					},
+					
+					pages = {
+						[1] = {
+							text1 = "Now Warping to Frostburn Peak Zone..."
+						},
+						
+						flags = V_ALLOWLOWERCASE|V_SNAPTOBOTTOM|V_PERPLAYER
+					},
+				}
+				
+				satrb.loadDialog(warpdialog1, player)
+			end
+		end
+	end, linedef)
+end

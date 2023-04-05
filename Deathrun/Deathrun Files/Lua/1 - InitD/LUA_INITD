@@ -1,0 +1,68 @@
+--// INITIALIZING DEATHRUN....... //--
+--[[ ABOUT:
+		Deathrun is a popular gamemode among Garry's Mod players, which involves players trying to avoid traps while reaching the end.
+			This mod aims to recreate that gamemode within SRB2. ]]
+
+--// FREESLOTS
+freeslot(
+-- Gametypes --
+"TOL_DEATHRUN",
+
+-- Sounds --
+-- Cosmetics
+"sfx_where"
+)
+
+/*------- GAMETYPES -------*/
+/*						   */
+/*   Death Run Gametype    */
+/* Written by NARbluebear  */
+/*     and StarManiaKG     */
+/*						   */
+/*-------------------------*/
+G_AddGametype({
+	name = "Deathrun",
+	identifier = "deathrun",
+	typeoflevel = TOL_DEATHRUN,
+	rules = GTR_SPECTATORS|GTR_TEAMS|GTR_TIMELIMIT,
+	rankingtype = GT_TEAMMATCH,
+	intermissiontype = int_teammatch,
+	defaulttimelimit = 5,
+	headerleftcolor = 23,
+	headerrightcolor = 147,
+	description = "These obstacle courses have been rigged by trappers. Finish the level without being killed."
+})
+
+--// VARIABLES
+-- Necessities --
+DeathRun.Sounds = {}
+
+DeathRun.Necessities = {
+	BarrierLine = 100
+}
+
+-- In-Match --
+DeathRun.Match = {
+	redteamMembers = 0,
+	blueteamMembers = 0,
+	
+	Status = "waiting",
+	Winner = "none"
+}
+
+-- Traps --
+DeathRun.Traps = {}
+
+-- Players --
+DeathRun.PlayerStatus = {}
+DeathRun.PlayerSkins = {}
+
+-- Abilities --
+DeathRun.AbilityTable = {}
+
+DeathRun.MainAbility = {}
+DeathRun.SideAbility = {}
+DeathRun.SuperAbility = {}
+
+-- Mods --
+if (Cosmetics) then Cosmetics.AddDeathsound("Werehog Scream", sfx_where) end

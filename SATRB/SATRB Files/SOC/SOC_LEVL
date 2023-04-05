@@ -1,0 +1,235 @@
+## Levels
+#The Titlemap
+Level TS
+LevelName = Title Screen
+Subtitle = hi
+Music = _TITLE
+SkyNum = 99
+Weather = PRECIP_STORM
+
+#The Actual Levels
+Level 1
+LevelName = Metallic City
+Act = 0
+Music = BMCZ
+TypeOfLevel = SinglePlayer,Co-op,Competition,Race
+SkyNum = 1
+Weather = PRECIP_NONE
+RecordAttack = true
+LevelSelect = 1
+SaveGame = true
+SkyboxScale = 26
+NextLevel = 3
+LevelSelect = 1
+SubTitle = Another Adventure...
+NoVisitNeeded = true
+
+Level 2
+LevelName = The Abyss
+Act = 0
+Music = DSZ1
+TypeOfLevel = SinglePlayer,Co-op,Competition,Race
+SkyNum = 8
+RecordAttack = true
+LevelSelect = 2
+NextLevel = 3
+SkyboxScale = 32
+SaveGame = true
+
+Level 3
+LevelName = Giant Crawla
+Act = 0
+Music = VSMINO
+TypeOfLevel = SinglePlayer,Coop
+TitleCardActDiamond = POSDMND
+SkyNum = 10
+RecordAttack = true
+LevelSelect = 2
+NextLevel = 805
+SkyboxScale = 32
+BonusType = Boss
+WarningTitle = true
+NoZone = true
+ForceResetMusic = true
+MusicPostBoss = TL
+CutsceneNum = 2
+StartRings = 10
+SaveGame = true
+
+#Where the Real Fun Begins
+Level 805
+LevelName = Tails' Lab
+Music = TL
+TypeOfLevel = SinglePlayer,Coop
+NoZone = true
+SkyNum = 1
+RecordAttack = false
+SkyboxScale = 15
+SaveGame = true
+
+Level 4
+LevelName = Frostburn Peak
+Act = 1
+Music = FBPZ
+TypeOfLevel = SinglePlayer,Co-op,Competition,Race
+SkyNum = 4
+Weather = PRECIP_SNOW
+TitleCardActDiamond = DMNDCYN
+TitleCardZigZag = ZZAGCYN
+TitleCardZigZagText = TEXTCYN
+RecordAttack = true
+LevelSelect = 1
+SaveGame = true
+SkyboxScale = 26
+NextLevel = 5
+
+Level 5
+LevelName = Frostburn Peak
+Act = 2
+Music = FBPZ
+TypeOfLevel = SinglePlayer,Co-op,Competition,Race
+SkyNum = 107
+Weather = PRECIP_SNOW
+TitleCardActDiamond = DMNDCYN
+TitleCardZigZag = ZZAGCYN
+TitleCardZigZagText = TEXTCYN
+RecordAttack = true
+LevelSelect = 1
+SaveGame = true
+SkyboxScale = 26
+NextLevel = 6
+LevelSelect = 1
+
+Level 6
+LevelName = Frostburn Peak
+WarningTitle = true
+Act = 3
+StartRings = 5
+SkyNum = 107
+Music = VSBARK
+Weather = PRECIP_SNOW
+ForceResetMusic = true
+TypeOfLevel = Singleplayer,Coop
+TitleCardActDiamond = BRKDMND
+LevelSelect = 1
+RecordAttack = true
+NextLevel = 805
+BonusType = Boss
+SkyboxScale = 26
+SaveGame = true
+
+Level 7
+LevelName = Sapphire Landscape
+Music = SLZ1
+Act = 1
+TypeOfLevel = Singleplayer,Coop,Race,Competition
+SaveGame = true
+NextLevel = 8
+SkyNum = 300
+SkyboxScale = 2
+
+Level 8
+LevelName = Sapphire Landscape
+Music = SLZ2
+Act = 2
+TypeOfLevel = Singleplayer,Coop,Race,Competition
+SaveGame = true
+NextLevel = 805
+SkyNum = 300
+SkyboxScale = 24
+
+Level 9
+LevelName = Fang
+Music = VSFANG
+RecordAttack = true
+TypeOfLevel = SinglePlayer,Coop
+Act = 0
+SkyboxScale = 16
+NextLevel = 805
+SkyNum = 11
+WarningTitle = true
+StartRings = 5
+ForceResetMusic = true
+NoZone = true
+LevelSelect = 6
+BonusType = Boss
+MusicPostBoss = PEACE
+SaveGame = true
+
+Level 10
+LevelName = Nimbus Climb
+Act = 1
+TypeOfLevel = SinglePlayer,Coop,Competition,Race
+Music = OTS
+SkyboxScale = 12
+RecordAttack = true
+LevelSelect = 8
+SkyNum = 3
+NextLevel = 805
+SaveGame = true
+
+Level 15
+LevelName = Stardust Speedway
+Act = 3
+Bonustype = ERZ3
+LevelSelect = 7
+Music = SSZGF
+NextLevel = 805
+SkyNum = 9
+RecordAttack = true
+TypeOfLevel = SinglePlayer,Coop,Competition,Race
+SkyboxScale = 24
+SaveGame = true
+
+Level 18
+LevelName = Abandoned Factory
+Act = 1
+TypeOfLevel = SinglePlayer,Coop,Competition,Race
+Music = THZ1
+SkyboxScale = 12
+RecordAttack = true
+SaveGame = true
+LevelSelect = 8
+SkyNum = 3
+NextLevel = 19
+
+Level 19
+LevelName = Abandoned Factory
+Act = 2
+TypeOfLevel = SinglePlayer,Coop,Competition,Race
+Music = ERZ2
+SkyboxScale = 16
+RecordAttack = true
+LevelSelect = 8
+SkyNum = 3
+SaveGame = true
+NextLevel = 20
+
+Level 20
+LevelName = Abandoned Factory
+Act = 3
+TypeOfLevel = SinglePlayer,Coop
+Music = SPEC7
+SkyboxScale = 24
+RecordAttack = true
+LevelSelect = 8
+SkyNum = 3
+SaveGame = true
+NextLevel = 805
+
+Level 28
+LevelName = You're all Good Guys
+NoZone = true
+Act = 0
+Music = NMHH
+TypeOfLevel = SinglePlayer,Coop
+SkyNum = 25
+RecordAttack = true
+LevelSelect = 11
+NextLevel = 1100
+SkyboxScale = 96
+SaveGame = true
+WarningTitle = true
+BonusType = Boss
+StartRings = 125
+ForceResetMusic = true

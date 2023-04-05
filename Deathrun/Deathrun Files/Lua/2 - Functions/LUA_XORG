@@ -1,0 +1,13 @@
+--// DEATHRUN FUNCTIONS (Made by Star) //--
+--// VARIABLES
+-- Links
+local DR = DeathRun
+
+local DRM = DeathRun.Match
+
+-- Match --
+function DRM.DoMatchOver()
+	DR.ActualMatchStatus = "over"
+	
+	G_ExitLevel()
+end

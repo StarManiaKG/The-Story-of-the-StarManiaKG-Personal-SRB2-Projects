@@ -1,0 +1,71 @@
+local DR = DeathRun
+local CA = DR.MainAbility
+local CA2 = DR.SideAbility
+local SA = DR.SuperAbility
+
+--Our New Best Friend, The Ability Table
+function DR.AddSkin(skin, mainability, sideability, superability)
+	local alreadyexists = false
+	if DR.PlayerSkins[skin] then alreadyexists = true end
+	
+	DR.PlayerSkins[skin] = {
+		main_ability = mainability,
+		side_ability = sideability,
+		super_ability = superability,
+	}
+	
+	print((alreadyexists and "Edited " or "Added ") + "Deathrun Parameters for \$skin\.")
+end
+DR.AddSkin("sonic", CA.CYCLONETHOK, CA2.DOWNWARDSTHOK, SA.SUPERTHOK)
+DR.AddSkin("tails", CA.STRONGFLIGHT, nil, nil)
+DR.AddSkin("knuckles", CA.BUFFGLIDE, nil, nil)
+DR.AddSkin("amy", CA.CYCLONETHOK, CA2.DOWNWARDSTHOK, SA.SUPERTHOK)
+DR.AddSkin("fang", CA.CYCLONETHOK, CA2.DOWNWARDSTHOK, SA.SUPERTHOK)
+DR.AddSkin("metalsonic", CA.CYCLONETHOK, CA2.DOWNWARDSTHOK, SA.SUPERTHOK)
+
+--Put in Our Inputs
+addHook("AbilitySpecial", function(player)
+	if player.mo and player.mo.valid and maptol == TOL_DEATHRUN then
+		player.drjumpabilitypress = true
+		if not (player.mo.skin == "tails" or player.mo.skin == "knuckles") then
+			return
+		end
+	end
+end)
+
+addHook("PlayerThink", function(player)
+	if player.mo and player.mo.valid and maptol == TOL_DEATHRUN then
+		--Jump Stuff
+		if not (player.cmd.buttons & BT_JUMP) then
+			player.drjumpholding = false
+			player.drjumptapready = true
+			player.drjumptapping = false
+		elseif (player.drjumptapready) then
+			player.drjumptapping = true
+			player.drjumptapready = false
+		else
+			player.drjumptapping = false
+			player.drjumpholding = true
+			player.drjumpabilitypress = false
+		end
+		--Spin Stuff
+		if not (player.cmd.buttons & BT_SPIN) then
+			player.drspinholding = false
+			player.drspintapready = true
+			player.drspintapping = false
+		elseif (player.drspintapready) then
+			player.drspintapping = true
+			player.drspintapready = false
+		else
+			player.drspintapping = false
+			player.drspinholding = true
+			player.drspinabilitypress = false
+		end
+		// Assign our Characters Their Abilities //
+		if (DR.PlayerSkins[player.mo.skin]) then
+			if (DR.PlayerSkins[player.mo.skin].main_ability) then DR.PlayerSkins[player.mo.skin].main_ability(player.mo) end
+			if (DR.PlayerSkins[player.mo.skin].side_ability) then DR.PlayerSkins[player.mo.skin].side_ability(player.mo) end
+			if (DR.PlayerSkins[player.mo.skin].super_ability) then DR.PlayerSkins[player.mo.skin].super_ability(player.mo) end
+		end
+	end
+end)

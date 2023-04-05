@@ -1,0 +1,39 @@
+# Lobby #
+Level LB
+LevelName = Lobby
+NoZone = true
+Act = 0
+Music = ERZ2
+TypeOfLevel = Deathrun
+SkyNum = 1
+SkyboxScale = 32
+NextLevel = 507
+LevelSelect = 5
+SubTitle = The Main Deathrun Lobby
+Lua.DeathrunLobby = true
+
+# Main Levels #
+Level AE
+LevelName = Abominable Ecosystem
+NoZone = true
+Act = 0
+Music = SPEC7
+TypeOfLevel = Deathrun
+SkyboxScale = 24
+SkyNum = 1
+NextLevel = 507
+LevelSelect = 4
+SubTitle = A Beautiful Grassland
+Lua.DeathrunStartLinedef = 180
+
+Level GP
+LevelName = Greenscale Paradise
+NoZone = true
+Act = 0
+Music = GP
+TypeOfLevel = Deathrun
+SkyNum = 1
+LevelSelect = 3
+NextLevel = 507
+SubTitle = Kill
+Lua.DeathrunStartLinedef = 100

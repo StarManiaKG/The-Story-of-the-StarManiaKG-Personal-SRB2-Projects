@@ -1,0 +1,86 @@
+--// Tails' Lab Main Lua Script (Where everything related to Tails' Lab is...probably...here) //--
+local S = satrb
+
+local SV = S.Saving.luabank
+local SVT = S.Saving.types
+
+local SZ = S.Zones
+
+--// HOOKS
+local changeweather = false
+local skytochangeto = 0
+local weather = 0
+addHook("MapLoad", function(mapnum)
+    local timeskies = {[2] = 4, [3] = 6, [4] = 10}
+
+	for player in players.iterate do
+	    player = consoleplayer
+	    
+		if (player and player.valid) then			
+            if (gamemap == 805) then
+				-- Set Variables
+                for _, shud in pairs({"rings", "time"}) do if (hud.enabled(shud)) then hud.disable(shud) end end
+				stoppedclock = true
+
+                -- Weather Changing (Made by NARbluebear and Star) --
+                if not (changeweather) then
+                    SV[SVT.TIMEPASSED] = (SV[SVT.TIMEPASSED] < 4 and $ + 1 or 0)
+					
+                    skytochangeto = (SV[SVT.TIMEPASSED] > 1 and timeskies[SV[SVT.TIMEPASSED]] or 1)
+                    weather = P_RandomRange(0, 6)
+					
+                    P_SwitchWeather(weather)
+                    P_SetupLevelSky(weather and ((weather == (1|5) and 20) or (weather == (2|4) and 18) or (weather == (3|6) and 12)) or skytochangeto)
+                    
+					changeweather = true
+                end
+				
+				-- Level Checkers (Made By NARBlueBear and Star)
+				for i = 0, SV[SVT.FINISHEDZONES] do
+					SZ[i].zonecomplete = true
+					
+					if (SZ[i].linedefs) then
+						for _, linedefs in pairs(SZ[i].linedefs) do
+							if (SZ[SV[SVT.FINISHEDZONES]].zonecomplete) then P_LinedefExecute(linedefs) end
+						end
+					end
+				end
+            else
+				-- Unset Variables
+                for _, shud in pairs({"rings", "time"}) do if not (hud.enabled(shud)) then hud.enable(shud) end end
+				changeweather = false
+            end
+        end
+	end
+end)
+
+hud.add(function(v, player) --"I thought it was synched in netgames" //NAR 9/9/2020
+	player = consoleplayer
+	
+	-- Time -- 
+	local timefade = {
+		{ -- Afternoon
+			fade = 0,
+			strength = 0
+		},
+		
+		{ -- Sunset
+			fade = 70,
+			strength = 5
+		},
+		
+		{ -- Night
+			fade = 157,
+			strength = 8
+		},
+		
+		{ -- Sunrise
+			fade = 71,
+			strength = 4
+		},
+	}
+
+	for player in players.iterate do
+		if (gamemap == 805) then v.fadeScreen(timefade[SV[SVT.TIMEPASSED]].fade, timefade[SV[SVT.TIMEPASSED]].strength) end
+	end
+end, "game")

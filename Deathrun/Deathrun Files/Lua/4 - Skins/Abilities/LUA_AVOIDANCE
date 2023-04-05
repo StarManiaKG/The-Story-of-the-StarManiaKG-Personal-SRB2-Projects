@@ -1,0 +1,46 @@
+--// VARIABLES
+-- Links
+local DR = DeathRun
+local CA = DR.MainAbility
+local CA2 = DR.SideAbility
+local SA = DR.SuperAbility
+
+--// ABILITIES
+-- Main
+function CA.STRONGFLIGHT(mo) --I Wanna Fly High
+	local player = mo.player
+	
+	local flyghost
+	if player.flyhightime == nil then player.flyhightime = 4 end
+	
+	if mo and mo.valid then --Is our Support valid?
+	
+		--Initial Checks
+		if (P_IsObjectOnGround(mo) or mo.eflags & (MFE_JUSTHITFLOOR|MFE_SPRUNG)) then
+			if (player.flyhightime != 5) then player.flyhightime = 5 end
+		else
+			player.powers[pw_tailsfly] = TICRATE
+		end
+		
+		--Are we out of energy or pressing SPIN?
+		if not (player.flyhightime) or (player.drspintapping) then
+			if not (P_IsObjectOnGround(mo)) and (player.panim & PA_ABILITY) then
+				mo.state = (player.drspintapping and S_PLAY_ROLL or S_PLAY_FLY_TIRED)
+				player.powers[pw_tailsfly] = 0
+				flyghost = P_SpawnGhostMobj(mo)
+				flyghost.color = mo.color
+				flyghost.fuse = 5
+				if (player.drspintapping) then player.flyhightime = 0 end
+			end
+		--Do we still have some power inside of us?
+		else
+			if (player.drjumpabilitypress) then
+				if not P_IsObjectOnGround(mo) and (player.pflags & PF_THOKKED and player.panim & PA_ABILITY) then
+					P_SetObjectMomZ(mo, 15*FRACUNIT, false)
+					player.flyhightime = $ - 1
+				end
+			end
+		end
+		
+	end
+end

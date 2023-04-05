@@ -1,0 +1,51 @@
+--// SATRB BOSSES //--
+for _, boss in ipairs({MT_GIANTCRAWLA, MT_BARKBARK}) do
+	addHook("BossThinker", function(yourejustanenemy)
+		if (yourejustanenemy and yourejustanenemy.valid) then
+			
+			-- Giant Crawla --
+			if (yourejustanenemy.type == MT_GIANTCRAWLA) then
+				yourejustanenemy.pinchphase = ($ or false)
+				
+				-- Start Pinch Phase
+				if (yourejustanenemy.health == 3 and not yourejustanenemy.pinchphase) then
+					S_StartSound(yourejustanenemy, sfx_s3kd0s)
+					
+					yourejustanenemy.destscale = 2*FRACUNIT
+					yourejustanenemy.radius = $ + 2*FRACUNIT
+					
+					
+					yourejustanenemy.pinchphase = true
+				end
+
+				-- Go Ham
+				//yourejustanenemy.state = (($ == S_GCRAWLA_TOPINCH) and (yourejustanenemy.pinchphase and S_GCRAWLA_FIRE2 or S_GCRAWLA_RUN1) or $)
+			end
+			
+			-- Bark Bark --
+			if (yourejustanenemy.type == MT_BARKBARK) then
+				yourejustanenemy.pinchphase, yourejustanenemy.pinchphase2 = ($ or false), ($ or false)
+				
+				-- Start Pinch Phases
+				if (yourejustanenemy.health == 5 and not yourejustanenemy.pinchphase) then
+					S_StartSound(yourejustanenemy, sfx_s3kd0s)
+					
+					yourejustanenemy.destscale = 2*FRACUNIT
+					yourejustanenemy.radius = $ + 2*FRACUNIT
+
+					yourejustanenemy.pinchphase = true
+				elseif (yourejustanenemy.health == 2 and not yourejustanenemy.pinchphase2) then
+					S_StartSound(yourejustanenemy, sfx_s3kd0s)
+					
+					yourejustanenemy.destscale = 2*FRACUNIT
+					yourejustanenemy.radius = $ + 2*FRACUNIT
+					
+					yourejustanenemy.pinchphase2 = true
+				end
+
+				-- Go Sicko Mode				
+				//yourejustanenemy.state = (($ == S_BARKBARK_TOPINCH) and (yourejustanenemy.pinchphase and S_BARKBARK_FIRE or S_BARKBARK_RUN) or $)
+			end
+		end
+	end, boss)
+end

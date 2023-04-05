@@ -1,0 +1,94 @@
+--// FUNCTIONS
+local function has_value (tab, val)
+    for index, value in ipairs(tab) do if value == val then return true end end
+    return false
+end
+local function getGroundTexture(mo)
+    local result = nil
+	
+    if (mo.eflags & MFE_VERTICALFLIP)
+		if (mo.ceilingrover) then
+			result = mo.ceilingrover.bottompic
+        elseif (mo.standingslope and mo.standingslope == mo.subsector.sector.c_slope) or (mo.ceilingz == mo.subsector.sector.ceilingheight) then
+            result = mo.subsector.sector.ceilingpic
+		end
+    else
+        if (mo.floorrover) then
+            result = mo.floorrover.toppic
+		elseif (mo.standingslope and mo.standingslope == mo.subsector.sector.f_slope) or (mo.floorz == mo.subsector.sector.floorheight) then
+			result = mo.subsector.sector.floorpic
+        end
+	end
+	
+	return result
+end
+
+--// MAIN
+addHook("PlayerThink", function(player)
+	if (player.mo and player.mo.valid and not (player.playerstate and player.powers[pw_carry] == CR_NIGHTSMODE)) then
+		local panimInfo = satrb.AnimInfo[player.mo.skin]
+		local material
+		local soundType
+		local sounds
+		
+		if (panimInfo) then
+			if not (player.variablesset) then
+				player.lastframe = 0
+				player.lastanim = nil
+				player.playsound = false
+				player.wasfalling = false
+				player.variablesset = true
+				player.groundtexture = nil
+				player.lastgroundtexture = nil
+			end
+			player.groundtexture = (getGroundTexture(player.mo) or player.lastgroundtexture)
+				
+			-- Everything But Falling
+			player.playsound = false
+			if (P_IsObjectOnGround(player.mo)) then
+				if not (player.wasfalling) then
+					// Skidding
+					if (player.skidtime == 16) then
+						player.playsound = true
+						soundType = "skid"
+					// Stepping
+					elseif not (player.powers[pw_carry]) then
+						if (player.mo.state == S_PLAY_RUN) then
+							player.playsound = panimInfo["run"] and (player.powers[pw_super] == 0 or panimInfo["superRun"]) and (has_value(panimInfo["runFrames"], player.mo.frame & FF_FRAMEMASK) or has_value(panimInfo["runFrames"], player.mo.frame))
+						elseif (player.mo.state == S_PLAY_WALK) then
+							player.playsound = panimInfo["walk"] and (player.powers[pw_super] == 0 or panimInfo["superWalk"]) and (has_value(panimInfo["walkFrames"], player.mo.frame & FF_FRAMEMASK) or has_value(panimInfo["walkFrames"], player.mo.frame))
+						elseif (player.mo.state == S_PLAY_STND or player.mo.state == S_PLAY_EDGE) then
+							player.playsound = panimInfo["idle"] and (player.powers[pw_super] == 0 or panimInfo["superIdle"]) and player.lastanim ~= player.panim
+						elseif (player.mo.state == S_PLAY_WAIT) then
+							player.playsound = panimInfo["wait"] and (player.powers[pw_super] == 0 or panimInfo["superWait"])  and (has_value(panimInfo["waitFrames"], player.mo.frame & FF_FRAMEMASK) or has_value(panimInfo["waitFrames"], player.mo.frame))
+						end
+							
+						soundType = "steps"
+						player.playsound = player.playsound and player.lastframe ~= player.mo.frame
+						player.lastframe = player.mo.frame
+						player.lastanim = player.panim
+					end
+				// Landing isn't the same as Falling
+				else
+					player.wasfalling = false
+					player.playsound = true
+					soundType = "land"
+				end
+			-- Falling: Electric Boogalo
+			else
+				player.wasfalling = true
+			end
+			
+			--Now Play Our Sound
+			if (player.playsound) then
+				if not (player.mo.eflags & (MFE_UNDERWATER|MFE_TOUCHWATER|MFE_GOOWATER)) then
+					material = satrb.Sounds["footsteps"]["texturetypes"][player.groundtexture]
+					player.lastgroundtexture = player.groundtexture
+				end
+				
+				sounds = satrb.Sounds["footsteps"][player.mo.eflags & (MFE_UNDERWATER|MFE_TOUCHWATER|MFE_GOOWATER) and "water" or (material or "concrete")][soundType]
+				S_StartSound(player.mo, sounds[P_RandomKey(#sounds) + 1])
+			end
+		end
+	end
+end)

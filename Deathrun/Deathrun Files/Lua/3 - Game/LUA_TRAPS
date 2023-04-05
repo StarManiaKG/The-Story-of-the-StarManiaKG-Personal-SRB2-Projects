@@ -1,0 +1,25 @@
+--// VARIABLES
+-- Links
+local DR = DeathRun
+
+local DRT = DeathRun.Traps
+
+--// HOOKS
+-- Register Traps --
+addHook("MapLoad", function()
+	for line in lines.iterate do
+		if (line.tag == 81220) then
+			local index = #DRT
+			
+			local front = line.frontside
+			local frontsec = line.frontsector
+			
+			table.insert(DRT, {
+				viewableindex = index,
+				
+				name = (front.toptexture and (front.toptexture + (front.midtexture or "") + (front.bottomtexture or "")) or ("Trap #" + viewableindex)),
+				trigger = front.textureoffset
+			})
+		end
+	end
+end)

@@ -1,0 +1,39 @@
+--By NARBlueBear by the Way
+addHook("PlayerThink", function(player)
+	if player.mo and player.mo.valid then
+		if gamemap == 7 then
+			--Manage Buttons For Me Right Quick
+			if not (player.cmd.buttons & BT_CUSTOM2) then
+				player.spintapready = true
+				player.spintapping = false
+			elseif player.spintapready then
+				player.spintapping = true
+				player.spintapready = false
+			else
+				player.spintapping = false
+			end
+			--Actual Flip Stuff
+			if not (player.flipdelay) then
+				if (player.spintapping) then
+					player.mo.flags2 = $1 ^^ MF2_TWOD
+					player.flipdelay = 15
+				elseif (player.fliptime) and not (player.mo.flags2 & MF2_TWOD) then
+					player.fliptime = -1
+				end
+			else
+				player.flipdelay = $ - 1
+			end
+			if not (player.fliptime) then
+				if player.fliptime != 700 then
+					player.fliptime = $ + 1
+				else
+					player.fliptime = 700
+				end
+				player.flipdelay = 0
+			else
+				S_StartSound(player.mo, 162)
+				player.rings = $ - 1
+			end
+		end
+	end
+end)

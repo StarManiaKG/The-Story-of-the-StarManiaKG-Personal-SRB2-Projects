@@ -1,0 +1,101 @@
+--// OBJECTS //--
+for _, SATRBObjectManager in pairs({"MobjSpawn", "MapThingSpawn", "MobjThinker"}) do
+	for _, objs in pairs({MT_STILL_NPC, MT_MOVING_NPC, MT_LEVELNAME, MT_ICESPRING}) do
+		addHook(SATRBObjectManager, function(mobj)
+		    if (mobj and mobj.valid) then
+				--// Spawning Objects --
+				if (SATRBObjectManager == "MobjSpawn") then
+					--// Scenery
+					-- NPCs
+					if (mobj.type == (MT_STILL_NPC|MT_MOVING_NPC)) then
+						local npcskin = {[1] = "sonic", [2] = "tails", [3] = "knuckles", [4] = "amy", [5] = "fang"}
+						
+						mobj.skin = npcskin[mobj.spawnpoint and mobj.spawnpoint.extrainfo or P_RandomRange(1, 5)]
+						mobj.sprite2 = SPR2_STND
+
+						mobj.color = P_RandomRange(0, #skincolors-1)
+						
+						-- Follow Objects --
+						if (skins[mobj.skin].followitem and not (mobj.followitem or mobj.followmobj)) then
+							for _, object in pairs({"followitem", "followmobj"}) do
+								mobj[object] = P_SpawnMobjFromMobj(mobj, 0, 0, 0, MT_NPC_TAILS)
+								
+								mobj[object].skin = mobj.skin
+								mobj[object].state = S_TAILSOVERLAY_STAND
+								mobj[object].sprite2 = SPR2_STND
+
+								mobj[object].scale, mobj[object].destscale = mobj.scale, mobj.scale
+								mobj[object].color = mobj.color
+								
+								if (mobj.flags2 & MF2_OBJECTFLIP) then mobj[object].flags2 = $1|MF2_OBJECTFLIP|MF2_LINKDRAW end
+								if (mobj.eflags & MFE_VERTICALFLIP) then mobj[object].eflags = $1|MFE_VERTICALFLIP mobj[object].z = mobj.height - mobj[object].height end
+							end		
+						end
+					end
+				end
+				
+				--// Spawning MapThings --
+				if (SATRBObjectManager == "MapThingSpawn") then
+					if (mapthing and mapthing.valid) then
+						--// Scenery
+						-- Tails' Lab Level Name Sign
+						if (mobj.type == MT_LEVELNAME) then
+							if (mapthing.extrainfo) then
+								local spawnstate = {
+									[1] = {
+										level = "FBPZ",
+										state = S_LNAMEIMZ
+									},
+									[2] = {
+										level = "GWFZ",
+										state = S_LNAMEGFZ
+									},
+								}
+								
+								if (spawnstate[mapthing.extrainfo]) then
+									print("Setting up \$spawnstate[mapthing.extrainfo].level\'s level tag!")
+									
+									mobj.state = spawnstate[mapthing.extrainfo].state
+									return
+								end
+							end
+
+							print("ERROR!")
+							mobj.state = S_LNAME0
+						end
+					end
+				end
+				
+				--// Object Thinkers --
+				if (SATRBObjectManager == "MobjThinker") then
+					--// Scenery
+					-- Tails' Lab Level Name Sign
+					if (mobj.type == MT_LEVELNAME) then
+						mobj.timer = ($ or 0)
+						mobj.dir = ($ or "up")
+						
+						mobj.timer = (mobj.dir == "up" and $ + 1 or $ - 1)
+						mobj.dir = (mobj.timer == TICRATE and "down" or "up")
+						mobj.z = (168*FRACUNIT) + (mobj.timer*FRACUNIT)
+					end
+					
+					-- NPCs
+					if (mobj.type == (MT_STILL_NPC|MT_MOVING_NPC)) then
+						if (skins[mobj.skin].followitem and (mobj.followitem or mobj.followmobj)) then
+							for _, object in pairs({"followitem", "followmobj"}) do					
+								mobj[object].angle, mobj[object].rollangle = mobj.angle, mobj.rollangle
+								
+								P_TeleportMove(mobj[object], mobj.x + FixedMul(-1*FRACUNIT, cos(mobj.angle)), mobj.y + FixedMul(-1*FRACUNIT, sin(mobj.angle)), mobj.z)
+							end
+						end
+					end
+				
+					-- Ice Spring
+					if (mobj.type == MT_ICESPRING) then
+						mobj.mass = (mobjinfo[mobj.type].angle and mobj.angle or 12*FRACUNIT)
+					end
+				end
+		    end
+		end, objs)
+	end
+end

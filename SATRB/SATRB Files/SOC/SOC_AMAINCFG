@@ -1,0 +1,143 @@
+MAINCFG
+Gamedata = satrb.dat
+NumDemos = 4
+SpStage_Start = 1
+SmpStage_Start = 569
+SStage_Start = 569
+Titlemap = 812
+Clear All
+
+#Emblems
+#Metallic City Zone
+Emblem 1
+Hint = Apparently Lying on a Egg-Shaped-Man's Capsule, Whatever that Means.
+Type = Global
+Tag = 1
+MapNum = 01
+Sprite = A
+Color = SKINCOLOR_CYAN
+
+#Frostburn Peak Zone
+#Emblem 8
+#Hint = Die.
+#Type = Global
+#MapNum = 04
+#Sprite = C
+#Color = SKINCOLOR_COBALT
+
+#Unlockables
+Unlockable 1
+Name = Sound Test
+Objective = Beat Metallic City Zone
+Type = SoundTest
+Height = 0
+ConditionSet = 1
+
+Unlockable 2
+Name = Record Attack
+Objective = Beat Metallic City Zone
+Type = RecordAttack
+Height = 0
+ConditionSet = 1
+
+Unlockable 3
+Name = Play as Amy Rose
+Objective = Beat Metallic City Zone
+Type = None
+Height = 0
+ConditionSet = 1
+
+Unlockable 4
+Name = Play as Fang
+Objective = Beat Metallic City Zone
+Type = None
+Height = 0
+ConditionSet = 1
+
+Unlockable 5
+Name = Play as Metal Sonic
+Objective = Beat Metallic City Zone
+Type = None
+Height = 0
+ConditionSet = 1
+
+Unlockable 6
+Name = Tails' Lab Room 1
+Objective = Beat Frostburn Peak Zone
+Type = None
+Height = 0
+ConditionSet = 2
+
+Unlockable 7
+Name = Tails' Lab Room 2
+Objective = Beat Fang
+Type = None
+Height = 0
+ConditionSet = 3
+
+Unlockable 8
+Name = Emblem Hints
+Objective = Get 5 Emblems!
+Type = EmblemHints
+Height = 0
+ConditionSet = 4
+
+Unlockable 9
+Name = Emblem Radar
+Objective = Beat Abandoned Factory Zone
+Type = ItemFinder
+Height = 0
+ConditionSet = 5
+
+Unlockable 10
+Name = Tails' Lab Room 3
+Objective = Beat Abandoned Factory Zone
+Type = None
+Height = 0
+ConditionSet = 5
+
+Unlockable 11
+Name = Pandora's Box
+Objective = Get all Emblems and beat Abandoned Factory Zone
+Type = Pandora
+Height = 0
+ConditionSet = 6
+
+#ExtraEmblems
+ExtraEmblem 1
+Name = Oyasumi...
+Objective = Clear the Game without all Emeralds!
+ConditionSet = 7
+
+ExtraEmblem 2
+Name = One More Day...
+Objective = Clear the Game with all Emeralds!
+ConditionSet = 8
+
+#Condition Sets
+ConditionSet 1
+Condition1 = MapBeaten 1
+
+ConditionSet 2
+Condition1 = MapBeaten 6
+
+ConditionSet 3
+Condition1 = MapBeaten 9
+
+ConditionSet 4
+Condition1 = TotalEmblems 5
+
+ConditionSet 5
+Condition1 = MapBeaten 18
+
+ConditionSet 6
+Condition1 = TotalEmblems 12
+Condition1 = MapBeaten 18
+#Condition1 = GameClear
+
+ConditionSet 7
+Condition1 = GameClear
+
+ConditionSet 8
+Condition1 = GameClear
+Condition1 = AllEmeralds

@@ -1,0 +1,27 @@
+#########################
+#  Tails' Lab Entrance! #
+#########################
+
+#-----------------#
+# Warping To Now! #
+#-----------------#
+
+PROMPT 1
+NumPages 1
+PAGE 1
+Tag = MAP4WARP
+Name = Lab_Speaker_System
+Icon = TAILTALK
+IconAlign = Left
+PageText = Now going to ^4Frostburn Peak Zone^4^0!^0
+	#
+
+PROMPT 2
+NumPages 1
+PAGE 1
+Tag = MAP7WARP
+Name = Lab_Speaker_System
+Icon = TAILTALK
+IconAlign = Left
+PageText = Now going to ^3Greenwood Forest^3^0!^0
+	#

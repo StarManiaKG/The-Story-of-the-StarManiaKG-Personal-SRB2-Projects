@@ -1,0 +1,79 @@
+--// SATRB SAVING (By StarManiaKG and NARBlueBear) //--
+--// VARIABLES //--
+--// Linked
+local S = satrb
+
+local SV = S.Saving.luabank
+local SVT = S.Saving.types
+
+local SZ = S.Zones
+
+--// LUABANKS //--
+--// Player Spawning
+addHook("PlayerSpawn", function(player) /*-- Reset Values --*/ SV[SVT.TIMEPASSED] = (not $ and 1 or $) end)
+
+--// Intermission and Exiting
+addHook("IntermissionThinker", function()
+	local player = consoleplayer
+
+	-- Reset Values --
+	SV[SVT.TOTALRINGS] = ($ > tonumber(INT32_MAX) and tonumber(INT32_MAX) or $) --Unfortunately, there's a cap to how many rings we can save up. However, 2.14 billion should be more than enough.
+	
+	-- MAPS --
+	local TZ = SZ[SV[SVT.FINISHEDZONES]] -- Total Zones
+
+	-- Add Rings
+	if not (TZ.hasboss or TZ.map == gamemap) then SV[SVT.TOTALRINGS], player.rings = ($ + player.rings), 0 end
+	
+	-- Mark Zones as Complete
+	if (TZ.map == gamemap) then
+		TZ.zonecomplete = ($ or true)	
+		SV[SVT.FINISHEDZONES] = $ + 1
+	end
+end)
+
+--// Rendering
+for _, hudtype in ipairs({"game", "intermission"}) do
+	hud.add(function(v)
+		local player = consoleplayer
+	
+		local defaultflags = V_HUDTRANS|V_PERPLAYER
+		
+		-- Render During Active Games
+		if (hudtype == "game") then
+			-- STATUSES --
+			-- Total Rings
+			v.draw(218, 10, v.cachePatch("TOTLRING"), defaultflags|V_SNAPTOTOP|V_SNAPTOLEFT)
+			v.drawNum(304, 26, SV[SVT.TOTALRINGS], defaultflags|V_SNAPTOTOP|V_SNAPTOLEFT)
+			
+			-- MAPS --
+			-- Exiting
+			v.drawString(312, 10, "Zones Beaten", defaultflags|V_SNAPTOTOP|V_SNAPTOLEFT)
+			v.drawNum(389, 26, SV[SVT.FINISHEDZONES], defaultflags|V_SNAPTOTOP|V_SNAPTOLEFT)
+		end
+	
+		-- Render During Intermissions
+		if (hudtype == "intermission") then
+			-- STATUSES --
+			-- Add Total Rings
+			v.draw(218, 10, v.cachePatch("TOTLRING"), defaultflags|V_SNAPTOTOP|V_SNAPTOLEFT)
+			v.drawNum(304, 26, SV[SVT.TOTALRINGS], defaultflags|V_SNAPTOTOP|V_SNAPTOLEFT)
+			
+			-- MAPS --
+			-- Mark Level as Completed
+			v.drawString(312, 10, "Zones Beaten", defaultflags|V_SNAPTOTOP|V_SNAPTOLEFT)
+			v.drawNum(389, 26, SV[SVT.FINISHEDZONES], defaultflags|V_SNAPTOTOP|V_SNAPTOLEFT)
+			
+			-- Imitate CEcho
+			if not (SV[SVT.FINISHEDZONES] % 1) then
+				v.drawString(188, 0,
+					("Tails' Lab Room " +
+						(SV[SVT.FINISHEDZONES] and ((SV[SVT.FINISHEDZONES] == 3 and "1") or (SV[SVT.FINISHEDZONES] == 5 and "2")) or (SV[SVT.FINISHEDZONES] == 8 and "3")) +
+					" Unlocked!"), 
+					
+					(defaultflags|V_SNAPTOTOP|V_SNAPTOLEFT),
+				("center"))
+			end
+		end
+	end, hudtype)
+end

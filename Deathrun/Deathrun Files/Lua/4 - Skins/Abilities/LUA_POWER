@@ -1,0 +1,70 @@
+--// VARIABLES
+-- Links
+local DR = DeathRun
+local CA = DR.MainAbility
+local CA2 = DR.SideAbility
+local SA = DR.SuperAbility
+
+--// ABILITIES
+-- Main
+function CA.BUFFGLIDE(mo) --Knock Knock
+	local player = mo.player
+	
+	local buffghost
+	if player.gliding == nil then player.gliding = false end
+	if player.swimming == nil then player.swimming = false end
+	if player.dropped == nil then player.dropped = false end
+	
+	--DPS
+	if mo and mo.valid then
+		if (player.pflags & PF_GLIDING) then
+			player.gliding = (mo.eflags & MFE_UNDERWATER and false or true)
+			player.swimming = (mo.eflags & MFE_UNDERWATER and true or false)
+		end
+		if (player.drjumpabilitypress) then
+			if not (mo.eflags & MFE_UNDERWATER) then
+				if (player.gliding) then
+					P_InstaThrust(mo, mo.angle, player.actionspd)
+					P_SetObjectMomZ(mo, -10*FRACUNIT, false)
+					mo.state = S_PLAY_GLIDE
+				end
+			else
+				--Fun Deathrun Fact: This part of Knuckles' ability was a bug, but it was cool to me so I decided to keep and fix it lol
+				if (player.swimming) then
+					P_SetObjectMomZ(mo, 5*FRACUNIT, false)
+					mo.state = S_PLAY_GLIDE
+				end
+			end
+		elseif (player.drspintapping) then
+			if not (mo.eflags & MFE_UNDERWATER) then
+				if (player.gliding) then
+					P_SetObjectMomZ(mo, -15*FRACUNIT, false)
+					mo.state = S_PLAY_GLIDE
+					player.dropped = true
+				end
+			end
+		end
+		if (player.swimming or player.gliding) then
+			if not ((player.dropped) and P_IsObjectOnGround(mo)) then
+				P_SetObjectMomZ(mo, -10*FRACUNIT, true)
+				mo.state = S_PLAY_FALL
+				player.dropped = true
+			end
+		elseif (player.gliding) and not (player.swimming) then
+			buffghost = P_SpawnGhostMobj(mo)
+			buffghost.color = mo.color
+			buffghost.fuse = 2
+		end
+		if (P_IsObjectOnGround(mo) or mo.eflags & (MFE_JUSTHITFLOOR|MFE_SPRUNG)) then
+			player.gliding = false
+			player.dropped = false
+			player.swimming = false
+		else
+			if (player.dropped) then
+				buffghost = P_SpawnGhostMobj(mo)
+				buffghost.color = mo.color
+				buffghost.fuse = 3
+			end
+		end
+	end
+end
