@@ -1,5 +1,6 @@
-Here's where the files for my personal projects are located.
+Here's where the files for my Sonic Robot Blaster 2 personal projects are located.
 These consist of random things I've done throughout my entire SRB2 coding joruney, and also consist of some long-term projects as well.
+I tend to work on these when I have free time, or when I don't want to work on custom builds lol
 
 ### TIPS
 ***CLONING THIS REPOSITORY***
