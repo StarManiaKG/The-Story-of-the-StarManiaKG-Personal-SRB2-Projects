@@ -1,6 +1,6 @@
 --// MENU EXAMPLE MADE BY STARMANIAKG#4884 (hi snoopers and future code users by the way) //--
 
---[[ Notes and Warnings and stuff
+--[[ NOTES:
 	While this Menu Example May Be More Lackluster than the others, this menu example will help you effeciently get what you need done, done, in a timely manner.
 	It Might not be flashy, but it works, and sometimes, that's all you need.
 	
@@ -8,19 +8,19 @@
 	Luckily, the proper format is shown and described to you below. Aren't you lucky?
 	
 	Strings can only be about 26 letters long before they start to look weird. You can add your own manuvers in to replace this, using iterators and
-	string.len and string.concat and things like that, but for this example, there will be none of that, because i am lazy :)
+	string.len and string.concat and things like that, but for this example, there will be none of that, because I'm lazy :)
 	Putting Nothing Inside of A String Is Also Very Dumb, But If you Want That, I can't stop you :P
 	
 	The Functions and Subpages Provided Below Can Be Utilized and Used to your Heart's Content.
 	Want to Utilize both functions and menus as the same time? Great, Page 5 will serve you well.
-	Only Want Functions or Subpages? Page 1 - Subpage 1 and even Page 1 - Option 3 Have You Covered
+	Only Want Functions or Subpages? Page 1 - Subpage 1 and even Page 1 - Option 3 Have You Covered.
+	
 	Want to make your own custom additions to be utilized and able to be seleted?
 	Add them to your custom table and make sure they're utilized and recognized under the select button's code, which is under the /* A (Select) */ Header.
 
 	Unless you want to Implement it yourself, putting a Subpage in a Subpage DOES NOT WORK!
-	...How would that work in Lua Anyway? It would probably Go On For Eternity, Right?
 	
-	S_StartSound() Serves No Other Purpose Than To Play Funny Sounds, and If Anyone Says Otherwise They Are Lying.
+	S_StartSound() Serves No Other Purpose Than To Play Funny Sounds, and If Anyone Says Otherwise, They Are Lying.
 ]]--
 
 // Easily Sorted List of Easily To Remember Variable Names :)
@@ -515,7 +515,7 @@ hud.add(function(v, player)
 					((((SPE and SPA) and ((SPE[CSP][m].name == SPE[CSP][CSPOS].name) and V_ALLOWLOWERCASE|V_YELLOWMAP)) or ((not SPA and P) and ((P[m].name == PS.name) and V_ALLOWLOWERCASE|V_YELLOWMAP))) or V_ALLOWLOWERCASE),
 				"center")
 				
-				// Draw Page Names (For special Detail)
+				// Draw Page Names (For Special Detail)
 				v.drawString(160, 25+(10*((SPE and SPA) and #SPE[CSP] or #P)),
 					// Render Page Names
 					((SPE and SPA) and (SPE[CSP].pagename) or (P.pagename)),

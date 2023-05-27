@@ -1,0 +1,95 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "SRB2_22UDMF.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	MAPUE
+	{
+		viewpositiony = -1706.899f;
+		custombrightness = 196;
+		
+		testpostcommand
+		{
+			autocloseonsuccess = true;
+			stderriserror = true;
+			exitcodeiserror = true;
+		}
+		uselongtexturenames = false;
+		overrideceiltexture = false;
+		overridebottomtexture = false;
+		defaultfloortexture = "GFZFLR01";
+		
+		reloadresourceprecommand
+		{
+			autocloseonsuccess = true;
+			stderriserror = true;
+			exitcodeiserror = true;
+		}
+		viewpositionx = 236.7345f;
+		overridemiddletexture = false;
+		viewscale = 1.461917f;
+		
+		fieldtypes
+		{
+			
+			sector
+			{
+				xpanningceiling = 1;
+				rotationfloor = 1;
+				yscaleceiling = 1;
+				xscalefloor = 1;
+				xscaleceiling = 1;
+				ypanningceiling = 1;
+				xpanningfloor = 1;
+				rotationceiling = 1;
+				ypanningfloor = 1;
+				yscalefloor = 1;
+			}
+		}
+		defaulttoptexture = "GFZROCK";
+		
+		testprecommand
+		{
+			autocloseonsuccess = true;
+			stderriserror = true;
+			exitcodeiserror = true;
+		}
+		overridetoptexture = false;
+		customceilheight = 128;
+		customfloorheight = 0;
+		defaultwalltexture = "GFZROCK";
+		overridefloortexture = false;
+		defaultceiltexture = "F_SKY1";
+		defaultbottomtexture = "GFZROCK";
+		
+		reloadresourcepostcommand
+		{
+			autocloseonsuccess = true;
+			stderriserror = true;
+			exitcodeiserror = true;
+		}
+		overrideceilheight = false;
+		
+		grid
+		{
+			backscalex = 100;
+			gridoriginy = 0;
+			background = "";
+			backoffsety = 0;
+			gridoriginx = 0;
+			backoffsetx = 0;
+			gridrotate = 0;
+			gridsize = 16;
+			backscaley = 100;
+			backsource = 0;
+		}
+		overridebrightness = false;
+		overridefloorheight = false;
+		
+		resources
+		{
+		}
+	}
+}

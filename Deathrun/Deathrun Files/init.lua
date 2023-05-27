@@ -12,9 +12,10 @@ for _, files in ipairs({
 	
 	"2 - Functions/LUA_XORG",
 	
-	"3 - Game/LUA_SYSTEMD",
-	"3 - Game/LUA_TRAPS",
-	"3 - Game/LUA_RENDERING",
+	"3 - Game/GLOBAL_SYSTEMD.lua",
+	"3 - Game/GLOBAL_TRAPS.lua",
+	"3 - Game/GLOBAL_LINEDEFS.lua",
+	"3 - Game/GLOBAL_RENDERING.lua",
 	
 	"4 - Skins/Abilities/LUA_SPEED",
 	"4 - Skins/Abilities/LUA_AVOIDANCE",

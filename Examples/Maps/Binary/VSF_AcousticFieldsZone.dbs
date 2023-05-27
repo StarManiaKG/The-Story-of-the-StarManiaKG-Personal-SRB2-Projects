@@ -1,0 +1,87 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "SRB2_22Doom.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	MAPAF
+	{
+		
+		grid
+		{
+			backscalex = 100;
+			gridoriginy = 0;
+			background = "";
+			backoffsety = 0;
+			gridoriginx = 0;
+			backoffsetx = 0;
+			gridrotate = 0;
+			gridsize = 64;
+			backscaley = 100;
+			backsource = 0;
+		}
+		viewpositionx = 16811.32f;
+		viewscale = 0.3028748f;
+		
+		reloadresourcepostcommand
+		{
+			autocloseonsuccess = true;
+			stderriserror = true;
+			exitcodeiserror = true;
+		}
+		defaultceiltexture = "JNGWDF8";
+		overridemiddletexture = false;
+		
+		testpostcommand
+		{
+			autocloseonsuccess = true;
+			stderriserror = true;
+			exitcodeiserror = true;
+		}
+		overrideceiltexture = false;
+		
+		reloadresourceprecommand
+		{
+			autocloseonsuccess = true;
+			stderriserror = true;
+			exitcodeiserror = true;
+		}
+		customfloorheight = 0;
+		custombrightness = 196;
+		overridefloortexture = false;
+		
+		testprecommand
+		{
+			autocloseonsuccess = true;
+			stderriserror = true;
+			exitcodeiserror = true;
+		}
+		overridebottomtexture = false;
+		overrideceilheight = false;
+		uselongtexturenames = false;
+		defaultwalltexture = "JNGWD2";
+		overridefloorheight = false;
+		
+		resources
+		{
+			
+			resource0
+			{
+				type = 2;
+				location = "/usr/local/share/games/SRB2/tsourdt3rd.pk3";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+				requiredarchives = "";
+			}
+		}
+		defaultbottomtexture = "JNGWD2";
+		overridebrightness = false;
+		viewpositiony = 11911.1f;
+		customceilheight = 128;
+		defaultfloortexture = "ACZFLR01";
+		overridetoptexture = false;
+		defaulttoptexture = "JNGWD2";
+	}
+}
