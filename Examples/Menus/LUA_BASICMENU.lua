@@ -138,19 +138,23 @@ addHook("PlayerThink", function(player)
 end)
 
 addHook("PlayerThink", function(player)
-	if G_BuildMapName(gamemap) == "MAPTL" then
-		if (player.cmd.buttons & BT_CUSTOM1) then
-			if not (player.menu.show) then
-				player.menu.show = true
-				local file = io.openlocal("client/examples/store.dat", "w")
-				for e = 1,#player.menu.contents
-					for i = 1,#player.menu.contents[e]
-						if player.menu.contents[e][i].func or player.menu.contents[e][i].flags & MNF_NOSAVE then continue end
-						file:write(player.menu.contents[e][i].value.."\n")
-					end
+	if (player.cmd.buttons & BT_CUSTOM1) then
+		if not (player.menu.show) then
+			player.menu.show = true
+			local file = io.openlocal("client/examples/store.dat", "w")
+			for e = 1,#player.menu.contents
+				for i = 1,#player.menu.contents[e]
+					if player.menu.contents[e][i].func or player.menu.contents[e][i].flags & MNF_NOSAVE then continue end
+					file:write(player.menu.contents[e][i].value.."\n")
 				end
-				file:close()
 			end
+			file:close()
+		end
+	end
+	
+	if (player.cmd.buttons & BT_CUSTOM1) then
+		if (player.menu.show) then
+			player.menu.show = false
 		end
 	end
 end)
