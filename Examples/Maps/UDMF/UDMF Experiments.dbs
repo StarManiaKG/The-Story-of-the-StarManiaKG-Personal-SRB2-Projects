@@ -7,7 +7,7 @@ maps
 	
 	MAPUE
 	{
-		viewpositiony = -1706.899f;
+		viewpositiony = -2740.857f;
 		custombrightness = 196;
 		
 		testpostcommand
@@ -27,27 +27,9 @@ maps
 			stderriserror = true;
 			exitcodeiserror = true;
 		}
-		viewpositionx = 236.7345f;
+		viewpositionx = -5674.436f;
 		overridemiddletexture = false;
-		viewscale = 1.461917f;
-		
-		fieldtypes
-		{
-			
-			sector
-			{
-				xpanningceiling = 1;
-				rotationfloor = 1;
-				yscaleceiling = 1;
-				xscalefloor = 1;
-				xscaleceiling = 1;
-				ypanningceiling = 1;
-				xpanningfloor = 1;
-				rotationceiling = 1;
-				ypanningfloor = 1;
-				yscalefloor = 1;
-			}
-		}
+		viewscale = 0.8650366f;
 		defaulttoptexture = "GFZROCK";
 		
 		testprecommand
@@ -81,7 +63,7 @@ maps
 			gridoriginx = 0;
 			backoffsetx = 0;
 			gridrotate = 0;
-			gridsize = 16;
+			gridsize = 64;
 			backscaley = 100;
 			backsource = 0;
 		}
@@ -90,6 +72,24 @@ maps
 		
 		resources
 		{
+		}
+		
+		fieldtypes
+		{
+			
+			sector
+			{
+				xpanningceiling = 1;
+				ypanningceiling = 1;
+				rotationceiling = 17;
+				xscaleceiling = 1;
+				yscaleceiling = 1;
+				xpanningfloor = 1;
+				ypanningfloor = 1;
+				rotationfloor = 17;
+				xscalefloor = 1;
+				yscalefloor = 1;
+			}
 		}
 	}
 }
