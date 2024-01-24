@@ -1,0 +1,33 @@
+Custom 1 spawns something depending on where it is.
+
+Water: Sea Egg
+Air: Egg Zapper
+Ground: Mini Brak
+Sea Egg has infinite air, slowly moves, and can attack with missiles or that shockwave attack.
+Egg Zapper is a combination of its pre-2.2 and post-2.2 counterparts.
+Mini Brak is exactly what it sounds like: a miniature Brak Eggman. Is strong enough to break walls.
+Pressing Custom 1 while in any of these will eject you, reverting you back to normal Eggman.
+
+Custom 2 will:
+Sea Egg: Cause a shockwave that slowly creeps to the walls of the map.
+Egg Zapper: Spawn four spike balls, then dash, firing those balls in the process.
+Mini Brak: Makes Mini Brak jump up and stomp the floor underneath him. Doing this causes a minor earthquake, and can easily shatter floors.
+
+Custom 3 will:
+Sea Egg: Spawn decoys that will ~~attract~~ fool enemies.
+Egg Zapper: Charge up a powerful, three-way laser attack that does double damage. You will be immobile for a brief period after using it, however, making you vulnerable.
+Mini Brak (Press): Lob a bomb in your general direction.
+Mini Brak (Hold): Charge up his reticle attack that will fling any enemies that get hit by it.
+
+Spin will:
+Sea Egg: Fire a small bunch of missiles.
+Egg Zapper: Fire a laser which can pierce through enemies. You are immobile while firing, but will instantly gain control right after.
+Mini Brak: Launch a high-velocity missile that can shatter walls with ease.
+The Sea Egg is fast underwater, but cannot get onto land. It can, however, be used as a platform. Has 2HP.
+The Egg Zapper is the most mobile of the bunch. Has 2HP.
+The Mini Brak is slow, but tanky. Has 4HP.
+
+NOTE: Pressing Spin outside of a vehicle will cause Eggman to crouch down. Moving is slow, but you can crawl under spin gaps.
+
+I don't have a concept for his jump ability yet. Maybe his jetpack from Sonic CD?
+This text is here just to fill up space so that I can send this as a text file. Hopefully you like my ideas. Feel free to modify these if you do make this into a real mod.

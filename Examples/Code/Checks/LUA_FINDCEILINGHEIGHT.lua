@@ -1,0 +1,6 @@
+--// BASIC CEILING HEIGHT FINDER //--
+--// BY STARMANIAKG AND OTHERS IN THE SRB2 OFFICIAL DISCORD //--
+
+local function P_GetCeilingZ(mo)
+	return (P_GetZAt((mo.ceilingrover.b_slope or mo.subsector.sector.c_slope), mo.x, mo.y) or mo.ceilingz); -- return the corresponding position on the slope, if it exists, or just return the ceiling height
+end
