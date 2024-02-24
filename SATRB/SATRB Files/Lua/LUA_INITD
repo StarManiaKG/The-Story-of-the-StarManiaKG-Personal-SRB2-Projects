@@ -546,6 +546,7 @@ mobjinfo[MT_BARKBARK] = {
 	radius = 40*FRACUNIT,
 	height = 72*FRACUNIT,
 	mass = 250,
+	damage = 3,
 	flags = MF_SPECIAL|MF_SOLID|MF_BOSS|MF_SHOOTABLE
 }
 

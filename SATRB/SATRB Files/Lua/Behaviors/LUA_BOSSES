@@ -47,5 +47,5 @@ for _, boss in ipairs({MT_GIANTCRAWLA, MT_BARKBARK}) do
 				//yourejustanenemy.state = (($ == S_BARKBARK_TOPINCH) and (yourejustanenemy.pinchphase and S_BARKBARK_FIRE or S_BARKBARK_RUN) or $)
 			end
 		end
-	end, boss)
+	end)
 end

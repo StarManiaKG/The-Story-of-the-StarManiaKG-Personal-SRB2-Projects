@@ -96,6 +96,6 @@ for _, SATRBObjectManager in pairs({"MobjSpawn", "MapThingSpawn", "MobjThinker"}
 					end
 				end
 		    end
-		end, objs)
+		end)
 	end
 end
