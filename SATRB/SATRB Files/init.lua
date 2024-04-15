@@ -1,5 +1,5 @@
 --// ERRORS
-assert(not satrb, "Hexhog has Already Been Loaded!") -- Loading Two SATRBs
+assert(not satrb, "SATRB has already been loaded!") -- Loading Two SATRBs
 if (VERSION == 202 and SUBVERSION < 10) then error("SRB2 v2.2.10+ is Required For SATRB.", 0) end -- Wrong Version
 
 --// VARIABLES
